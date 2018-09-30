@@ -90,6 +90,7 @@
 virtual-socket-input-port
 virtual-socket-output-port
 virtual-socket-getpeername
+virtual-socket-getsockname
 virtual-socket-close
 virtual-socket-shutdown
 )
@@ -681,7 +682,7 @@ virtual-socket-shutdown
              (error-log "handle-client error ~s\n~a" (~ e'message)
                         (report-error e #f))
              (respond/ng (make-ng-request #"[E] ~(~ e'message)" csock) 500)])
-    (let1 line (read-line #?=(virtual-socket-input-port csock))
+    (let1 line (read-line (virtual-socket-input-port csock))
       (rxmatch-case line
         [test eof-object?
          (respond/ng (make-ng-request "(empty request)" csock) 400
