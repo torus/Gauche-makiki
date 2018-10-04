@@ -1,5 +1,5 @@
 ;;;
-;;; makiki - a small http server
+;;; kaheka - a small http server with virtual socket support forked from makiki
 ;;;
 ;;;   Copyright (c) 2010-2018 Shiro Kawai  <shiro@acm.org>
 ;;;
@@ -31,7 +31,7 @@
 ;;;   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ;;;
 
-(define-module makiki
+(define-module kaheka
   (use gauche.parameter)
   (use gauche.record)
   (use gauche.net)
@@ -87,15 +87,15 @@
           with-profiling-handler
           profiler-output
 
-virtual-socket-input-port
-virtual-socket-output-port
-virtual-socket-getpeername
-virtual-socket-getsockname
-virtual-socket-close
-virtual-socket-shutdown
+          virtual-socket-input-port
+          virtual-socket-output-port
+          virtual-socket-getpeername
+          virtual-socket-getsockname
+          virtual-socket-close
+          virtual-socket-shutdown
 )
   )
-(select-module makiki)
+(select-module kaheka)
 
 (autoload rfc.json construct-json-string parse-json-string <json-parse-error>)
 
